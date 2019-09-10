@@ -1,3 +1,19 @@
+// Debounce do Lodash
+debounce = function (func, wait, immediate) {
+	var timeout;
+	return function () {
+		var context = this, args = arguments;
+		var later = function () {
+			timeout = null;
+			if (!immediate) func.apply(context, args);
+		};
+		var callNow = immediate && !timeout;
+		clearTimeout(timeout);
+		timeout = setTimeout(later, wait);
+		if (callNow) func.apply(context, args);
+	};
+};
+
 // tab
 $('[data-group]').each(function(){
 	var $allTarget = $(this).find('[data-target]'),
@@ -51,7 +67,7 @@ $("section").each(function(){
 	var id = $(this).attr("id");
 	var $itemMenu = $("a[href='#" + id + "']");
 
-	$(window).scroll(function() {
+	$(window).scroll(debounce(function() {
 		var scrollTop = $(window).scrollTop();
 
 		if(offsetTop - menuHeight < scrollTop && offsetTop + height - menuHeight > scrollTop) {
@@ -59,5 +75,5 @@ $("section").each(function(){
 		} else {
 			$itemMenu.removeClass("active");
 		}
-	});
+	}, 200));
 });
