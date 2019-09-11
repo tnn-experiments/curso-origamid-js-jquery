@@ -129,7 +129,7 @@ img {
 	float: left;
 }
 
-.js .item {
+[data-target] {
 	position: absolute;
 	top: 0;
 	opacity: 0;
@@ -137,7 +137,7 @@ img {
 	transform: translate3d(-50px,0,0);
 }
 
-.js .item.active {
+[data-target].active {
 	position: relative;
 	top: auto;	
 	opacity: 1;

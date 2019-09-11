@@ -1,22 +1,31 @@
-// Exemplo 2
-$("[data-group]").each(function() {
-    var $allTarget = $(this).find("[data-target]");
-    var $allClick = $(this).find("[data-click]");
-    var activeClass = "active";
+// Exemplo 1
 
-    $allTarget.first().addClass(activeClass);
-    $allClick.first().addClass(activeClass);
+$(document).ready(function() {
+    var classActive = "active";
 
-    $allClick.click(function(e) {
+    $(".animais .tab-menu a").first().addClass(classActive);
+    $(".animais .item").first().addClass(classActive);
+    
+    $(".animais .tab-menu a").click(function(e) {
         e.preventDefault();
-
-        var id = $(this).data("click");
-        var $target = $("[data-target='" + id + "']");
-
-        $allClick.removeClass(activeClass); 
-        $allTarget.removeClass(activeClass);
-
-        $target.addClass(activeClass);
-        $(this).addClass(activeClass);
-    });
+        var itemId = $(this).attr("href");
+        
+        $(".animais .tab-menu a").removeClass(classActive);
+        $(".animais .item").removeClass(classActive);
+        $(this).addClass(classActive);
+        $(itemId).addClass(classActive);
+    });  
+    
+    $(".florestas .tab-menu a").first().addClass(classActive);
+    $(".florestas .item").first().addClass(classActive);
+    
+    $(".florestas .tab-menu a").click(function(e) {
+        e.preventDefault();
+        var itemId = $(this).attr("href");
+        
+        $(".florestas .tab-menu a").removeClass(classActive);
+        $(".florestas .item").removeClass(classActive);
+        $(this).addClass(classActive);
+        $(itemId).addClass(classActive);
+    });      
 });
